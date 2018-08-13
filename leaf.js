@@ -14,8 +14,8 @@ let region_code = process.env.regioncode;
 // You should store your username and password as environment variables. 
 // If you don't you can hard code them in the following variables.
 let username = process.env.username; // Your NissanConnect username or email address.
+//let password = encrypt(process.env.password); // Your NissanConnect account password.
 let password = querystring.escape( encrypt(process.env.password) ); // Your NissanConnect account password.
-
 
 let sessionid, vin, loginFailureCallback;
 
@@ -47,6 +47,7 @@ function sendRequest(action, requestData, successCallback, failureCallback) {
 			return;
 		}
 
+		console.log("Request data was", requestData);
 		console.log(`Successful request ${action} (${resp.statusCode}: ${resp.statusMessage})`);
 		let respData = "";
 
